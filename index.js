@@ -218,3 +218,23 @@ Menu.prototype._ondata = function ondata (buf) {
         else bytes.shift();
     }
 };
+
+Menu.prototype.select = function (){
+    this.charm.position(1, this.items[this.items.length-1].y + 2);
+    this.charm.display('reset');
+    this.emit('select', this.items[this.selected].label, this.selected);
+};
+
+Menu.prototype.up = function (){
+    this.selected = (this.selected - 1 + this.items.length)
+        % this.items.length
+    ;
+    this._drawRow(this.selected + 1);
+    this._drawRow(this.selected);
+};
+
+Menu.prototype.down = function (){
+    this.selected = (this.selected + 1) % this.items.length;
+    this._drawRow(this.selected - 1);
+    this._drawRow(this.selected);
+};
