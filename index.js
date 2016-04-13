@@ -238,3 +238,9 @@ Menu.prototype.down = function (){
     this._drawRow(this.selected - 1);
     this._drawRow(this.selected);
 };
+
+Menu.prototype.end = function(){
+    this.charm.reset();
+    this._input.end();
+    this._output.end();
+};
